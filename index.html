@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리반 홈페이지</title>
+    <style>
+        /* 라이트/다크모드 색상 변수 설정 */
+        :root {
+            --bg-color: #f4f4f9;
+            --text-color: #333;
+            --box-bg: #fff;
+            --point-color: #4CAF50;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --box-bg: #1e1e1e;
+        }
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0; padding: 15px;
+            transition: all 0.3s ease;
+        }
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px;
+        }
+        h1 { font-size: 1.5rem; margin: 0; }
+        button {
+            padding: 8px 12px; border: none; border-radius: 5px;
+            background-color: var(--point-color); color: white;
+            font-weight: bold; cursor: pointer;
+        }
+        .section {
+            background-color: var(--box-bg);
+            padding: 15px; margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 { font-size: 1.2rem; margin-top: 0; border-bottom: 2px solid var(--bg-color); padding-bottom: 5px; }
+        
+        /* 시간표 테이블 스타일 */
+        table { width: 100%; border-collapse: collapse; text-align: center; margin-top: 10px; }
+        th, td { border: 1px solid var(--bg-color); padding: 8px; font-size: 0.9rem; }
+        th { background-color: rgba(76, 175, 80, 0.1); }
+
+        /* 열품타 랭킹 스타일 */
+        .ranking-list { list-style: none; padding: 0; margin: 0; }
+        .ranking-list li {
+            display: flex; justify-content: space-between;
+            padding: 8px 0; border-bottom: 1px solid var(--bg-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🏫 2학년 3반 클래스룸</h1>
+        <button id="theme-btn">다크모드</button>
+    </header>
+
+    <div class="section">
+        <h2>📢 공지사항</h2>
+        <p id="notice-text">내일 1교시 체육입니다. 체육복 꼭 챙겨오세요! (급식 조사 폼 제출 요망)</p>
+    </div>
+
+    <div class="section">
+        <h2>📅 이번 주 시간표</h2>
+        <table>
+            <tr><th>교시</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th></tr>
+            <tr><td>1</td><td>국어</td><td>수학</td><td>영어</td><td>체육</td><td>과학</td></tr>
+            <tr><td>2</td><td>영어</td><td>과학</td><td>국어</td><td>미술</td><td>수학</td></tr>
+            <tr><td>3</td><td>수학</td><td>국어</td><td>체육</td><td>음악</td><td>영어</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🍚 오늘의 급식 (예시)</h2>
+        <p>친환경현미밥, 돼지고기김치찌개, 계란말이, 시금치나물, 깍두기</p>
+        <small style="color:gray;">*추후 나이스 API 연동 예정</small>
+    </div>
+
+    <div class="section">
+        <h2>🔥 열품타 학급 랭킹 (오늘)</h2>
+        <ul class="ranking-list">
+            <li><span>🥇 1위. 김철수</span> <span>5시간 30분</span></li>
+            <li><span>🥈 2위. 이영희</span> <span>4시간 15분</span></li>
+            <li><span>🥉 3위. 박민수</span> <span>3시간 50분</span></li>
+        </ul>
+        <small style="color:gray;">*구글 시트 연동을 통해 데이터 수동/자동 업데이트</small>
+    </div>
+
+    <script>
+        // 다크모드 스와이프/토글 로직
+        const themeBtn = document.getElementById('theme-btn');
+        let isDark = false;
+
+        themeBtn.addEventListener('click', () => {
+            isDark = !isDark;
+            if (isDark) {
+                document.body.setAttribute('data-theme', 'dark');
+                themeBtn.innerText = '라이트모드';
+            } else {
+                document.body.removeAttribute('data-theme');
+                themeBtn.innerText = '다크모드';
+            }
+        });
+    </script>
+</body>
+</html>
